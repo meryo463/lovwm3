@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url(https://i.imgur.com/P2DiIiV.jpeg); /* مسار الصورة الخلفية */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 90%; /* الحد الأقصى لعرض العناصر */
+            width: 300px; /* العرض الأساسي */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: white;
+            color: black;
+            border: 2px solid black; /* تغيير لون الحافة إلى الأسود */
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+            width: 100%; /* جعل الأزرار تأخذ العرض الكامل */
+            box-sizing: border-box; /* التأكد من أن الأزرار لن تتجاوز الحد */
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #no {
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #result img {
+            width: 100%; /* عرض الصورة داخل المربع */
+            max-width: 300px; /* الحد الأقصى لعرض الصورة */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Do you love me?</h1>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <div id="result" class="hidden">
+        <!-- رابط الصورة النهائية -->
+        <img src="https://i.imgur.com/ZzsF79K.png" alt="Final Image">
+    </div>
+
+    <script>
+        const noButton = document.getElementById("no");
+        const yesButton = document.getElementById("yes");
+        const container = document.querySelector(".container");
+        const resultDiv = document.getElementById("result");
+
+        // تحريك زر "No" إلى موقع عشوائي
+        noButton.addEventListener("mouseover", () => {
+            const randomX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const randomY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = "absolute";
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        });
+
+        // عند الضغط على "Yes"
+        yesButton.addEventListener("click", () => {
+            container.classList.add("hidden"); // إخفاء النص والأزرار
+            resultDiv.classList.remove("hidden"); // عرض الصورة النهائية
+        });
+    </script>
+</body>
+</html>
